@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+	<title>MedicineNote</title>
+</head>
+
+<body>
+	
+<main>
+	<div class="contents">
+		<form name="addMedicineForm" action="/medicineNote/addMedicine">
+			薬品名:
+			<input type="text" size="20" name="medicineName" required>
+			服薬量:
+			<select name="amount"></select>
+			飲む時間:
+				<input type="checkbox" class="check" name="medicineTime" value="朝" id="check0"><label for="check0">朝</label>
+				<input type="checkbox" class="check" name="medicineTime" value="昼" id="check1"><label for="check1">昼</label>
+				<input type="checkbox" class="check" name="medicineTime" value="夜" id="check2"><label for="check2">夜</label>
+				<input type="checkbox" class="check" name="medicineTime" value="就寝前" id="check3"><label for="check3">就寝前</label>
+			<button type="submit" onClick="return isCheck()">登録</button>
+		</form>
+		
+		<table class="top">
+			<tr>
+				<th>薬品名</th><th>服薬量</th><th>飲む時間</th>
+			</tr>
+			<tr th:each="medicine: ${medicineList}">
+				<td>
+					<a href="https://www.google.com/search?q=" th:href="@{https://www.google.com/search?q={medicineName}(medicineName=${medicine.medicineName})}">
+						<label th:text="${medicine.medicineName}"></label>
+					</a>
+				</td>
+				<td th:text="${medicine.amount}"></td>
+				<td th:text="${medicine.medicineTime}"></td>
+			</tr>
+		</table>
+	</div>
+</main>
+	
+<script>
+	for(let i = 1; i <= 5; i++) {
+		const option = document.createElement("option");
+		option.setAttribute("value", i);
+		option.innerHTML = i;
+		document.getElementsByName("amount").item(0).appendChild(option);
+	}
+	
+	function isCheck() {
+    let arr_checkBoxes = document.getElementsByClassName("check");
+    let count = 0;
+    for (let i = 0; i < arr_checkBoxes.length; i++) {
+        if (arr_checkBoxes[i].checked) {
+            count++;
+        }
+    }
+    if (count > 0) {
+        return true;
+    } else {
+        window.alert("飲む時間を1つ以上選択してください。");
+        return false;
+    };
+ 
+}
+</script>
+</body>
+</html>

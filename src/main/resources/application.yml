@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/medicinenotedb?serverTimezone=Asia/Tokyo
+    username: root
+    password: mysql
+  thymeleaf:
+    cache: false
+  jmx:
+    enabled: false
+    
+mybatis:
+  configuration:
+    mapUnderscoreToCamelCase: true
+  mapper-locations:
+    - classpath*:/medicineNote/model/mapper/**/*.xml
+
+logging:
+  level:
+    org:
+      springframework: WARN
+    medicineNote:
+      model:
+        mapper: DEBUG
+
