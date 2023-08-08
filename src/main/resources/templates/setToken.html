@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+	<title>MedicineNote</title>
+</head>
+
+<body>
+	
+<main>
+	<header>
+		<h1 class="logo"><a href="/medicineNote/">MedicineNote</a></h1>
+		<nav>
+			<ul class="menu">
+				<li><a href="/medicineNote/setToken/">トークンを登録する</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<form name="setTokenForm" method="post" action="/medicineNote/setToken/confirm">
+		トークン:
+		<input type="text" name="token" required>
+		<button type="submit">トークンを登録する</button>
+	</form>
+</main>
+<body>
+
+</body>
+</html>

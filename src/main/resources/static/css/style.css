@@ -1,1 +1,27 @@
 @charset "UTF-8";
+header {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  background-color: darkgrey;
+  align-items: center;
+}
+a{
+	  text-decoration: none;
+	  color: inherit;
+}
+a:hover {
+	color:aliceblue;
+}
+.logo {
+	margin-right: auto;
+	font-family: 'Times New Roman';
+}
+
+.menu {
+	display: inline-block;
+}
+
+.contents {
+	clear:both;
+}

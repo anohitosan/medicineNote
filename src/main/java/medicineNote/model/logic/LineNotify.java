@@ -16,7 +16,7 @@ public class LineNotify {
         this.token = token;
     }
 
-    public void notify(String message) {
+    public boolean notify(String message) {
         HttpURLConnection connection = null;
         try {
             URL url = new URL("https://notify-api.line.me/api/notify");
@@ -32,16 +32,18 @@ public class LineNotify {
                     String res = r.lines().collect(Collectors.joining());
                     if (!res.contains("\"message\":\"ok\"")) {
                         System.out.println(res);
-                        System.out.println("Lineとの接続がうまくいきませんでした。");
+                        System.out.println("リクエストが不正かアクセストークンが無効です");
                     }
                 }
             }
         } catch (Exception e) {
             System.out.println("Lineとの接続で例外が発生しました。");
+            return false;
         } finally {
             if (connection != null) {
                 connection.disconnect();
             }
         }
+        return true;
     }
 }

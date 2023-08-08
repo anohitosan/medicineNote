@@ -11,10 +11,17 @@ import java.util.TimerTask;
 import medicineNote.model.domain.MedicineList;
 
 public class SetTimer {
+	private String token;
 	private int a = 0;
 	private int h = 0;
 	private int y = 0;
 	private int s = 0;
+	
+	public SetTimer() {
+	}
+	public SetTimer(String token) {
+		this.token = token;
+	}
 	
 	public void check(List<MedicineList> medicineList) throws ParseException{
 		for(MedicineList medicine : medicineList) {
@@ -45,9 +52,12 @@ public class SetTimer {
 		TimerTask task = new TimerTask() {
 			@Override
 			public void run() {
-				LineNotify lineNotify = new LineNotify("ここにLineNotifyのトークンを入力します");
-		        lineNotify.notify("薬を飲む時間です");
-		        System.out.println("薬を飲むようにLineに通知しました");
+				LineNotify lineNotify = new LineNotify(token);
+		        if(lineNotify.notify("薬を飲む時間です")) {
+		        	System.out.println("薬を飲むようにLineに通知しました");	
+		        } else {
+		        	System.out.println("通知に失敗しました");	
+		        }
 			}
 		};
 		if(timeframe.equals("朝") && date.before(sdf.parse(todayDate.toString() + " " + "07:00:00"))){

@@ -11,6 +11,17 @@ CREATE TABLE medicine_list (
 	updated_at DateTime NOT NULL default now()
 	);
 	
+CREATE TABLE token (
+	id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	token VARCHAR(255) NOT NULL,
+	created_at DateTime NOT NULL default now(),
+	updated_at DateTime NOT NULL default now()
+	);
+	
 INSERT INTO medicine_list
 (medicine_name,amount,medicine_time)
 VALUES ('サンプルネーム', 2, '朝');
+
+INSERT INTO token
+(token)
+VALUES ('sampletoken');
