@@ -28,8 +28,10 @@ public class CreateMessage {
 		if(nowTime.isAfter(LocalTime.of(16, 0)) && nowTime.isBefore(LocalTime.of(21, 0)) ) {
 			timeFrame = "夜";
 		}
-		if(nowTime.isAfter(LocalTime.of(21, 0)) && nowTime.isBefore(LocalTime.of(4, 00)) ) {
+		if(nowTime.isAfter(LocalTime.of(21, 0)) && nowTime.isBefore(LocalTime.of(23, 0)) ) {
 			timeFrame = "就寝前";
+		} else {
+			timeFrame ="就寝前";
 		}
 		return timeFrame;
 	}

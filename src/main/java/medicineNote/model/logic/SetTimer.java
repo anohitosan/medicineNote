@@ -74,7 +74,7 @@ public class SetTimer {
 			timer.schedule(task, sdf.parse(todayDate.toString() + " " + "19:00:00"),(long)(24 * 60 * 60 * 1000));	
 			System.out.println("夜にタイマーをセットしました");
 		}
-		if(timeframe.equals("就寝前") && date.before(sdf.parse(todayDate.toString() + " " + "22:00:00"))) {
+		if(timeframe.equals("就寝前") && date.before(sdf.parse(todayDate.toString() + " " + "23:00:00"))) {
 			timer.schedule(task, sdf.parse(todayDate.toString() + " " + "22:00:00"),(long)(24 * 60 * 60 * 1000));
 			System.out.println("就寝前にタイマーをセットしました");
 		}
