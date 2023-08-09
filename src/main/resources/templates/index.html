@@ -20,17 +20,26 @@
 		</nav>
 	</header>
 	<div class="contents">
-		<form name="addMedicineForm" action="/medicineNote/addMedicine">
-			薬品名:
-			<input type="text" size="20" name="medicineName" required>
-			服薬量:
-			<select name="amount"></select>
-			飲む時間:
-				<input type="checkbox" class="check" name="medicineTime" value="朝" id="check0"><label for="check0">朝</label>
-				<input type="checkbox" class="check" name="medicineTime" value="昼" id="check1"><label for="check1">昼</label>
-				<input type="checkbox" class="check" name="medicineTime" value="夜" id="check2"><label for="check2">夜</label>
-				<input type="checkbox" class="check" name="medicineTime" value="就寝前" id="check3"><label for="check3">就寝前</label>
-			<button type="submit" onClick="return isCheck()">登録</button>
+		<form class="medicineForm" name="addMedicineForm" action="/medicineNote/addMedicine">
+			<span>
+				薬品名:
+				<input type="text" size="20" name="medicineName" required>
+			</span>
+			<span>
+				服薬量:
+				<select name="amount"></select>	
+			</span>
+			<span>
+				飲む時間:
+					<input type="checkbox" class="check" name="medicineTime" value="朝" id="check0"><label for="check0">朝</label>
+					<input type="checkbox" class="check" name="medicineTime" value="昼" id="check1"><label for="check1">昼</label>
+					<input type="checkbox" class="check" name="medicineTime" value="夜" id="check2"><label for="check2">夜</label>
+					<input type="checkbox" class="check" name="medicineTime" value="就寝前" id="check3"><label for="check3">就寝前</label>
+			</span>
+			<span>
+				<button type="submit" onClick="return isCheck()">登録</button>
+			</span>	
+
 		</form>
 		
 		<table class="top">
@@ -88,7 +97,6 @@
 		const tr =  event.target.parentElement.parentElement;
 	  const medicineName = tr.querySelector("#medicineName").textContent;
 		const postObj = {"medicineName" : medicineName};
-		console.log("aaaaaaa");
 		
 		fetch("/medicineNote/deleteMedicine", {
 			method: "POST",

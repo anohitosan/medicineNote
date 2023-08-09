@@ -6,6 +6,44 @@ header {
   background-color: darkgrey;
   align-items: center;
 }
+
+.contents {
+	background-color: rgb(230, 230, 230);
+	width: 50%;
+	border: solid rgb(153, 153, 153) 4px;
+	border-radius: 16px;
+	margin: 60px auto 0;
+	box-shadow: 0 4px 8px 0 rgb(148, 148, 148);
+	padding: 30px;
+}
+
+.medicineForm {
+	text-align: center;
+	padding: 15px;
+}
+span {
+	padding-left: 20px;
+}
+
+.top {
+		text-align: center;
+		margin:auto;
+}
+
+table {
+    border-collapse:  collapse;
+}
+
+tr:nth-child(odd) {
+    background-color:  lightgrey; 
+}
+tr {
+		border-bottom: solid black 2px;
+}
+th,td {
+    padding: 10px 20px;
+}
+
 a{
 	  text-decoration: none;
 	  color: inherit;
