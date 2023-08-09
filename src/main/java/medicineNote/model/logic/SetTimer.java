@@ -15,14 +15,21 @@ import medicineNote.model.mapper.TokenMapper;
 public class SetTimer {
 	private final String message;
 	private final String token;
-	private int a = 0;
-	private int h = 0;
-	private int y = 0;
-	private int s = 0;
+	private static Timer timer;
+	private static int counter;
+	private int a;
+	private int h;
+	private int y;
+	private int s;
 	
 	public SetTimer(TokenMapper tm,MedicineListMapper mlm) {
 		this.token = tm.find().getToken();
-		this.message = new CreateMessage().createMessage(mlm);;
+		this.message = new CreateMessage().createMessage(mlm);
+		if(counter != 0) {
+			timer.cancel();
+		}
+		timer = new Timer(false);
+		counter++;
 	}
 	
 	public void check(List<MedicineList> medicineList) throws ParseException{
@@ -48,7 +55,6 @@ public class SetTimer {
 	
 	public void setTimer(String timeframe) throws ParseException{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		Timer timer = new Timer(false);
 		LocalDate todayDate = LocalDate.now();
 		Date date = new Date();
 		TimerTask task = new TimerTask() {
@@ -62,6 +68,7 @@ public class SetTimer {
 		        }
 			}
 		};
+		
 		if(timeframe.equals("朝") && date.before(sdf.parse(todayDate.toString() + " " + "07:00:00"))){
 			timer.schedule(task, sdf.parse(todayDate.toString() + " " + "07:00:00"),(long)(24 * 60 * 60 * 1000));	
 			System.out.println("朝にタイマーをセットしました");
