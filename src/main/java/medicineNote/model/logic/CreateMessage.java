@@ -11,7 +11,7 @@ public class CreateMessage {
 	private String message;
 	
 	public String createMessage (MedicineListMapper mlm) {
-		message = getTimeFrame() + "です。" + getMedicineName(mlm) + "を飲んでください。";
+		message = getTimeFrame() + "です。" + getMedicineData(mlm) + "使用してください";
 		return message;
 	}
 	
@@ -36,16 +36,22 @@ public class CreateMessage {
 		return timeFrame;
 	}
 	
-	private String getMedicineName(MedicineListMapper mlm) {
-		String medicineName = null;
-		List<String> medicineNameList = new ArrayList<>();
+	private String getMedicineData(MedicineListMapper mlm) {
+		String medicineData = null;
 		List<MedicineList> medicineList = mlm.findByTimeFrame(getTimeFrame());
+		List<String> medicineNameList = new ArrayList<>();
+		List<Integer> medicineAmountList = new ArrayList<>();
+		List<String> medicineDataList = new ArrayList<>();
 		
 		for(int i = 0; medicineList.size() > i; i++) {
 			medicineNameList.add(medicineList.get(i).getMedicineName());
+			medicineAmountList.add(medicineList.get(i).getAmount());
 		}
 		
-		medicineName = String.join(",", medicineNameList);
-		return medicineName;
+		for(int i = 0; medicineList.size() > i; i++) {
+			medicineDataList.add(medicineNameList.get(i) + "を" + medicineAmountList.get(i) + "個");
+		}
+		medicineData = String.join("、", medicineDataList);
+		return medicineData;
 	}
 }

@@ -69,8 +69,8 @@ public class SetTimer {
 			}
 		};
 		
-		if(timeframe.equals("朝") && date.before(sdf.parse(todayDate.toString() + " " + "07:00:00"))){
-			timer.schedule(task, sdf.parse(todayDate.toString() + " " + "07:00:00"),(long)(24 * 60 * 60 * 1000));	
+		if(timeframe.equals("朝") && date.before(sdf.parse(todayDate.toString() + " " + "10:00:00"))){
+			timer.schedule(task, sdf.parse(todayDate.toString() + " " + "00:21:00"),(long)(24 * 60 * 60 * 1000));	
 			System.out.println("朝にタイマーをセットしました");
 		}
 		if(timeframe.equals("昼") && date.before(sdf.parse(todayDate.toString() + " " + "12:30:00"))){
