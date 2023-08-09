@@ -66,12 +66,12 @@ public class SetTimer {
 			timer.schedule(task, sdf.parse(todayDate.toString() + " " + "07:00:00"),(long)(24 * 60 * 60 * 1000));	
 			System.out.println("朝にタイマーをセットしました");
 		}
-		if(timeframe.equals("昼") && date.before(sdf.parse(todayDate.toString() + " " + "11:30:00"))){
-			timer.schedule(task, sdf.parse(todayDate.toString() + " " + "11:30:00"),(long)(24 * 60 * 60 * 1000));
+		if(timeframe.equals("昼") && date.before(sdf.parse(todayDate.toString() + " " + "12:30:00"))){
+			timer.schedule(task, sdf.parse(todayDate.toString() + " " + "12:30:00"),(long)(24 * 60 * 60 * 1000));
 			System.out.println("昼にタイマーをセットしました");	
 		}
 		if(timeframe.equals("夜") && date.before(sdf.parse(todayDate.toString() + " " + "19:00:00"))) {
-			timer.schedule(task, sdf.parse(todayDate.toString() + " " + "15:00:00"),(long)(24 * 60 * 60 * 1000));	
+			timer.schedule(task, sdf.parse(todayDate.toString() + " " + "19:00:00"),(long)(24 * 60 * 60 * 1000));	
 			System.out.println("夜にタイマーをセットしました");
 		}
 		if(timeframe.equals("就寝前") && date.before(sdf.parse(todayDate.toString() + " " + "22:00:00"))) {
