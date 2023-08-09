@@ -27,7 +27,7 @@ public class IndexController {
 	@GetMapping("/")
 	public String index(Model m) {
 		List<MedicineList> medicineList = mlm.find();
-		SetTimer st = new SetTimer(tm.find().getToken());
+		SetTimer st = new SetTimer(tm,mlm);
 		try {
 			st.check(medicineList);
 		} catch (Exception e) {
