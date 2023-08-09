@@ -2,6 +2,7 @@ package medicineNote.model.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -19,4 +20,7 @@ public interface MedicineListMapper {
 	
 	@Insert(value="INSERT INTO medicine_list(medicine_name,amount,medicine_time) VALUES (#{medicineName},#{amount},#{medicineTime})")
 	int addMedicine(String medicineName,int amount, String medicineTime);
+	
+	@Delete(value="DELETE FROM medicine_list WHERE medicine_name = #{medicineName}")
+	int deleteByMedicineName (String medicineName);
 }

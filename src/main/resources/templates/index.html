@@ -35,22 +35,23 @@
 		
 		<table class="top">
 			<tr>
-				<th>薬品名</th><th>服薬量</th><th>飲む時間</th>
+				<th>薬品名</th><th>服薬量</th><th>飲む時間</th><th>処理</th>
 			</tr>
 			<tr th:each="medicine: ${medicineList}">
 				<td>
 					<a href="https://www.google.com/search?q=" th:href="@{https://www.google.com/search?q={medicineName}(medicineName=${medicine.medicineName})}">
-						<label th:text="${medicine.medicineName}"></label>
+						<label id = "medicineName" th:text="${medicine.medicineName}"></label>
 					</a>
 				</td>
 				<td th:text="${medicine.amount}"></td>
 				<td th:text="${medicine.medicineTime}"></td>
+				<td><button class="deleteButton">削除</button></td>
 			</tr>
 		</table>
 	</div>
 </main>
 	
-<script>
+<script th:inline="javascript">
 	for(let i = 1; i <= 5; i++) {
 		const option = document.createElement("option");
 		option.setAttribute("value", i);
@@ -72,8 +73,33 @@
         window.alert("飲む時間を1つ以上選択してください。");
         return false;
     };
- 
-}
+  }
+  
+  document.addEventListener("DOMContentLoaded", event => {
+		const deleteButtons = document.querySelectorAll(".deleteButton");
+		deleteButtons.forEach(btn => {
+			const tr =  btn.parentElement.parentElement;
+	  	const medicineName = tr.querySelector("#medicineName");
+	  	btn.addEventListener("click", deleteMedicine);
+		});
+	});
+  
+	function deleteMedicine(event) {
+		const tr =  event.target.parentElement.parentElement;
+	  const medicineName = tr.querySelector("#medicineName").textContent;
+		const postObj = {"medicineName" : medicineName};
+		console.log("aaaaaaa");
+		
+		fetch("/medicineNote/deleteMedicine", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(postObj),
+		})
+		.then(response => response.text())
+		.catch(error => {
+			console.error("Error: ", error);
+		});
+	}
 </script>
 </body>
 </html>
